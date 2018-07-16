@@ -1,8 +1,11 @@
-CC=g++
-DEPS = main.cpp
+CC = g++
+DEPS = main.cpp prop.cpp
+
+STD = -std=c++17
+GL = -lGL -lGLU -lglut
 
 make: main.cpp
-	 $(CC) $(DEPS) -std=c++11 -lglut -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lGLEW -lGLU -lm -pthread -ldrm -lXdamage -lXfixes -lX11-xcb -lxcb-glx -lxcb-dri2 -lXxf86vm -lXext -lxcb -lXau -lXdmcp -lsfml-graphics -lsfml-window -lsfml-system -lSOIL
+	 $(CC) $(DEPS) $(STD) $(GL)
 
 clean:
 	rm *.out
