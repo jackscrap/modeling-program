@@ -1,6 +1,10 @@
 #include <iostream>
+#include <vector>
+#include <string>
 
 #include <GL/glut.h>
+
+#include "prop.h"
 
 int cx = 0,
 		cy = 0,
@@ -131,6 +135,33 @@ void grid() {
 	}
 }
 
+Prop jerry("cube");
+
+void test() {
+	GLfloat cube[] = {
+		-1.000000, -1.000000, 1.000000,
+		-1.000000, 1.000000, 1.000000,
+		-1.000000, -1.000000, -1.000000,
+		-1.000000, 1.000000, -1.000000,
+		1.000000, -1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000,
+		1.000000, -1.000000, -1.000000,
+		1.000000, 1.000000, -1.000000
+	};
+
+	glColor3f(1, 1, 0);
+
+	/* for (int i = 0; i < sizeof jerry.vtx / sizeof *jerry.vtx; i++) { */
+	/* 	std::cout << jerry.vtx[i] << std::endl; */
+	/* } */
+
+	glVertexPointer(3, GL_FLOAT, 0, cube);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	glDrawElements(GL_QUADS, 8 * 3, GL_FLOAT, cube);
+}
+
 void disp() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -141,6 +172,7 @@ void disp() {
 	grid();
 	quad();
 	cube();
+	test();
 
 	glutSwapBuffers();
 }
